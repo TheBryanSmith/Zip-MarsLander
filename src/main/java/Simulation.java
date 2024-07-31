@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class Simulation {
     private final Vehicle vehicle;
 
@@ -43,7 +41,7 @@ public class Simulation {
 
     public void printString(String string) {
 // print long strings with new lines the them.
-    String[] a = string.split("\r?\n");
+        String[] a = string.split("\r?\n");
         for (String s : a) {
             System.out.println(s);
         }
@@ -63,26 +61,29 @@ public class Simulation {
                 break;
             }
             burnInterval++;
-            if (burnInterval % 9 == 0) {
+            if (burnInterval  % 9== 0) {//%9
                 printString(getHeader());
             }
         }
         printString(vehicle.checkFinalStatus());
         if (status != null) {
-            return status.getStatus();
+            return vehicle.getStatus(0).getStatus();
         }
         return -1;
     }
 
     public static void main(String[] args) {
-       Vehicle goingMerry = new Vehicle(10000);
-
         // create a new Simulation object with a random starting altitude
-        Simulation simulation = new Simulation(goingMerry);
+
+        Simulation simulation = new Simulation(new Vehicle(randomaltitude()));
+
+
         // create a new BurnInputStream
-        OnBoardComputer computer = new OnBoardComputer();
+        BurnInputStream burnInputStream = new BurnInputStream();
         // pass the new BurnInputStream to the runSimulation method
-        simulation.runSimulation(computer);
+
+        OnBoardComputer onBoardComputer = new OnBoardComputer();
+        simulation.runSimulation(burnInputStream);
     }
 
 }
