@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Simulation {
     private final Vehicle vehicle;
 
@@ -73,9 +75,14 @@ public class Simulation {
     }
 
     public static void main(String[] args) {
+       Vehicle goingMerry = new Vehicle(10000);
+
         // create a new Simulation object with a random starting altitude
+        Simulation simulation = new Simulation(goingMerry);
         // create a new BurnInputStream
+        OnBoardComputer computer = new OnBoardComputer();
         // pass the new BurnInputStream to the runSimulation method
+        simulation.runSimulation(computer);
     }
 
 }
